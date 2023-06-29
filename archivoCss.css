@@ -1,0 +1,154 @@
+body{
+    background-image: url(img/2uwfeagum6e.jpg);
+    background-size: 100%;
+}
+
+h1{
+    margin-left: 70%;
+    font-weight: bolder;
+    font-family: cursive;
+}
+
+.FiltroSegunEdad{
+    text-align: center;
+    font-family: cursive;
+}
+
+.tituloSelectorEdad{
+    text-shadow: 3px 3px 5px grey;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.cajaEdad{
+    border: solid 2px black;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: bold;
+    opacity: 0.5;
+    margin-top: 20px;
+}
+
+.botonesCategoria{
+    text-align: center;
+    margin: 30px;
+    
+}
+
+.botonComedia{
+    border: solid 2px black;
+    border-radius: 20px;
+    font-weight: bold;
+    opacity: 0.7;
+    padding: 10px;
+    width: 120px;
+    cursor: pointer;
+    background-color: deepskyblue;
+    margin: 50px;
+    
+}
+.botonComedia:hover{
+    color: white;
+}
+
+.botonCrimen{
+    border: solid 2px black;
+    border-radius: 20px;
+    font-weight: bold;
+    opacity: 0.7;
+    padding: 10px;
+    width: 120px;
+    cursor: pointer;
+    background-color:darkorange ;
+    margin: 50px;
+    
+}
+
+.botonCrimen:hover{
+    color: white;
+}
+
+.botonDrama{
+    border: solid 2px black;
+    border-radius: 20px;
+    font-weight: bold;
+    opacity: 0.7;
+    padding: 10px;
+    width: 120px;
+    cursor: pointer;
+    background-color: yellowgreen;
+    margin: 50px;
+}
+
+.botonDrama:hover{
+    color: white;
+}
+
+.botonMusical{
+    border: solid 2px black;
+    border-radius: 20px;
+    font-weight: bold;
+    opacity: 0.7;
+    padding: 10px;
+    width: 120px;
+    cursor: pointer;
+    background-color: tomato;
+    margin: 50px;
+    
+}
+
+.botonMusical:hover{
+    color: white
+}
+
+.agruparPosters{
+    display: inline-block;
+}
+
+.ImgPeliculaVolverAlFuturo{
+   display: none;
+   border: none;
+   border-radius: 30px;
+    
+}
+
+.ImgPeliculaTheTrumanShow{
+    display: none;
+    border: none;
+    border-radius: 30px;
+    height: 402px;
+    width: 279px;
+
+}
+
+.ImgPeliculaTheWolfofWallStreet{
+    display: none;
+    border: none;
+    border-radius: 30px;
+    height: 402px;
+    width: 279px;
+}
+
+.mensajeFinal{
+    text-align: center;
+    font-family: cursive;
+    color:yellow;
+    text-shadow: 3px 3px 5px black;
+}
+
+.ImgPeliculaElSecretoDeSusOjos{
+    display: none;
+    border: none;
+    border-radius: 30px;
+    height: 402px;
+    width: 279px; 
+}
+
+.ImgPeliculaTheGodfather{
+    display: none;
+    border: none;
+    border-radius: 30px;
+    height: 402px;
+    width: 279px; 
+}
+
