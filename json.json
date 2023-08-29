@@ -1,0 +1,120 @@
+{
+    "categorias": [
+        {
+            "nombre": "Películas",
+            "tipos": [
+                {
+                    "nombre": "Comedia",
+                    "opciones": [
+                        {
+                            "titulo": "Superbad",
+                            "sinopsis": "Dos amigos buscan tener una última gran fiesta antes de graduarse...",
+                            "imagenes": "img/Superbad.jpg"
+                        },
+                        {
+                            "titulo": "Día de los enamorados",
+                            "sinopsis": "Múltiples historias de amor se entrelazan en San Valentín...",
+                            "imagenes": "img/dia de los enamorados.jpg"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Terror",
+                    "opciones": [
+                        {
+                            "titulo": "El Conjuro",
+                            "sinopsis": "Dos investigadores paranormales enfrentan un caso aterrador..."
+                        },
+                        {
+                            "titulo": "El Exorcista",
+                            "sinopsis": "Una madre lucha para salvar a su hija poseída por un demonio..."
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Crecimiento personal",
+                    "opciones": [
+                        {
+                            "titulo": "steve jobs ",
+                            "sinopsis": "La vida y carrera del cofundador de 'Apple' Steve Jobs estuvo marcada por tres presentaciones de productos que revolucionaron la industria de la informática: el lanzamiento del legendario 'Macintosh', el NeXT y el iMac. Aunque Steve Jobs estaba considerado un visionario en el mundo de la tecnología informática, algunas de sus ideas causaron turbulencias en su vida profesional y personal."
+                        },
+                        {
+                            "titulo": "Hambre de poder",
+                            "sinopsis": "En los años 50, Ray Kroc, un vendedor de Illinois, conoce a los hermanos Mac y Dick McDonald, que llevan una hamburguesería al sur de California. Impresionado por la velocidad del sistema de cocina, Kroc visualiza el potencial de la franquicia y hábilmente se posiciona para arrebatárselo a los hermanos y crear el hoy imperio de un billón de dólares: McDonald's."
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Drama",
+                    "opciones": [
+                        {
+                            "titulo": "El Padrino (1972)",
+                            "sinopsis": "La historia sigue a una familia de mafiosos, los Corleone. Luego de que el heredero principal regrese como un héroe condecorado de la guerra, quiere vivir una vida normal. Pero después de que un trato con un traficante salga mal, los Corleone se verán envueltos en una guerra sin cuartel con otras familias."
+                        },
+                        {
+                            "titulo": "Taxi Driver (1976)",
+                            "sinopsis": "Jodie Foster interpreta a la prostituta infantil llamada Iris, y la historia se desarrolla en una Nueva York oscura y cruda. En esta ciudad, Bickle representa la brutalidad misma que tanto critica."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nombre": "Series",
+            "tipos": [
+                {
+                    "nombre": "Comedia",
+                    "opciones": [
+                        {
+                            "titulo": "Los Simpson (1989 - presente)",
+                            "sinopsis": "Una de las series más longevas de la televisión (ya van treinta años y sumando), 'Los Simpson' es un clásico imperecedero y una de las mejores series de animación para adultos (aunque, bueno, cuántas infancias ha marcado la serie en realidad en todo el mundo) que uno puede devorar en el salón de casa"
+                        },
+                        {
+                            "titulo": "Community (2009 - 2015)",
+                            "sinopsis": "Creada por Dan Harmon, esta serie encontró su lugar en el universo de las 'sitcom' norteamericanas gracias a unos personajes carismáticos, una trama llena de sorpresas y una voluntad de jugar con las armas cinematográficas, desde un homenaje al western hasta una batalla de pintura con más tensión que 'La jungla de cristal'."
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Terror",
+                    "opciones": [
+                        {
+                            "titulo": "El club de la medianoche  ",
+                            "sinopsis": "Es la cuarta serie de terror de Mike Flanagan para Netflix (más abajo tienes las otras tres, a cada cual mejor). Esta vez deja atrás las maldiciones y las misas satánicas para adentrarse en un hospicio para enfermos terminales que se reúnen a la hora que indica el título para contarse historias de miedo."
+                        },
+                        {
+                            "titulo": "Black Mirror",
+                            "sinopsis": "Historias independientes que exploran los aspectos oscuros de la tecnología..."
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Crecimiento personal",
+                    "opciones": [
+                        {
+                            "titulo": "Brené Brown: Sé valiente",
+                            "sinopsis": "Motivar desde el sentido del humor y con grandes dosis de empatía. Esta es la fórmula secreta de esta escritora y profesora de la Universidad de Houston. En «Sé valiente» de Netflix volvemos a encontrarnos con la protagonista de una de las charlas TED más escuchadas del mundo y que también es 100% recomendable."
+                        },
+                        {
+                            "titulo": "El último baile",
+                            "sinopsis": "ntes de que saques tu lista de prejuicios a relucir, tenemos algo que aclarar: da igual que el baloncesto no sea lo tuyo, este documental te gustará y sobre todo te inspirará sin importar cuál sea tu relación con el deporte."
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Drama",
+                    "opciones": [
+                        {
+                            "titulo": "Inconcebible",
+                            "sinopsis": "Cuando una adolescente informa que fue violada y luego se retracta de su historia, dos detectives siguen pistas que pueden revelar la verdad."
+                        },
+                        {
+                            "titulo": "Poco Ortodoxa",
+                            "sinopsis": "eborah Feldman, una mujer que ha crecido en el seno de una comunidad judía ultraortodoxa en el barrio de Williamsburg, Nueva York, decide huir de su matrimonio concertado y empezar una nueva vida en Berlín."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,246 +1,193 @@
+let datosJson;
+let categoriaSeleccionada = null;
+
+fetch('json.json')
+.then(res => res.json())
+.then((salida) => {
+    datosJson = salida;
+    console.log('Datos cargados:', datosJson); // Verifica si los datos se cargaron correctamente
+    cambioSelect(); // Llamar a la función para manejar el cambio de categoría
+})
+.catch(function(error) {
+    alert(error);
+});
+
 function buscarPorId(elementoID){
     let objetoId = document.getElementById(elementoID);
     return objetoId;
+} 
 
-}
-
-function configuracionEscuchador(elementoID, parrafoBtnFocus){
-    let elementoClickFocus = buscarPorId(parrafoBtnFocus);
-    elementoClickFocus.addEventListener('click', function(){
-        elementoFocus(elementoID);
-    })
- }
-
- function elementoFocus(elementoID){
-    let elementoDeFocus = buscarPorId(elementoID);
-    elementoDeFocus.focus();
- }
-
- function btnComedia(){
+function cambioSelect(){
+    let nombreSelect = buscarPorId('selectSeriePeliculas');
     let btn = buscarPorId('botonComedia');
-    let edad = buscarPorId ('cajaEdad');
+    let botonTerror = buscarPorId('botonTerror');
+    let botonDrama = buscarPorId('botoDrama');
+    let botonCrecimientoPersonal = buscarPorId('botonCrecimientoPersonal');
     
-    btn.addEventListener('click', function(){
-        let valorEdad = edad.value;
-        if(valorEdad >= 16){
-            let imgPelicula1 = document.getElementById('miImagen3')
-            imgPelicula1.classList.add('ImgPeliculaTheWolfofWallStreet')
-            imgPelicula1.style.display = 'inline-block';
-
-            let imgPelicula = document.getElementById('miImagen')
-            imgPelicula.classList.add('ImgPeliculaVolverAlFuturo')
-            imgPelicula.style.display = 'inline-block';
-
-            let imgPelicula2 = document.getElementById('miImagen2')
-                imgPelicula2.classList.add('ImgPeliculaTheTrumanShow')
-                imgPelicula2.style.display = 'inline-block';
-
-        } else {
-            let ImgDesaparece = buscarPorId('miImagen3');
-            ImgDesaparece.style.display = 'none'
-
-            if(valorEdad >= 13){
-                let imgPelicula2 = document.getElementById('miImagen2')
-                imgPelicula2.classList.add('ImgPeliculaTheTrumanShow')
-                imgPelicula2.style.display = 'inline-block';
-
-                let imgPelicula = document.getElementById('miImagen')
-                imgPelicula.classList.add('ImgPeliculaVolverAlFuturo')
-                imgPelicula.style.display = 'inline-block';
-            } else {
-                let ImgDesaparece = buscarPorId('miImagen2');
-                ImgDesaparece.style.display = 'none'
+    nombreSelect.addEventListener('change', function(){
+        categoriaSeleccionada = datosJson.categorias.find(categoria => categoria.nombre === nombreSelect.value);
+        console.log(categoriaSeleccionada + 'este mensaje');
+        if(categoriaSeleccionada){
+            btn.addEventListener('click', function(){
+                if(categoriaSeleccionada.nombre == 'Películas')
+                btnComedia('Películas')
+            else if(categoriaSeleccionada.nombre == 'Series'){
+                // codigo de series...
+                btnComedia('Series')
+                }
+            })
+            botonTerror.addEventListener('click', function(){
+                if(categoriaSeleccionada.nombre  == 'Películas'){
+                    btnTerror('Películas');
+                } else if (categoriaSeleccionada.nombre == 'Series'){
+                    btnTerror('Series')
+                };
+            });
+            botonDrama.addEventListener('click', function(){
+                if(categoriaSeleccionada.nombre == 'Películas'){
+                    btnDrama('Películas');
+                } else if (categoriaSeleccionada.nombre == 'Series'){
+                    btnDrama('Series');
+                };;
                 
-                if(valorEdad >=7 ){
-                    let imgPelicula = document.getElementById('miImagen')
-                    imgPelicula.classList.add('ImgPeliculaVolverAlFuturo')
-                    imgPelicula.style.display = 'inline-block';
-            } else{
-                let ImgDesaparecee = buscarPorId('miImagen');
-                ImgDesaparecee.style.display = 'none'
+            });
+            botonCrecimientoPersonal.addEventListener('click', function() {
+                if (categoriaSeleccionada.nombre === 'Películas') {
+                    btnCrecimientoPersonal('Películas');
+                } else if (categoriaSeleccionada.nombre === 'Series') {
+                    btnTerror('Series');
+                }
+            });
+        };
+    });
+};
+function btnComedia(categoriaSeleccUsuario) {
 
-                let mensajeFinal = buscarPorId('mensajeFinal');
-                mensajeFinal.textContent = 'No hay peliculas disponibles para tu edad';
-                setTimeout(function(){
-                    let mensajeFinal = buscarPorId('mensajeFinal');
-                    mensajeFinal.style.display ='none';
-                }, 5000)
-            
-            }
-          }
+    let div1 = buscarPorId('div1');
+    let divHijo = buscarPorId('divHijo');
+    div1.innerHTML = categoriaSeleccUsuario + ":\n";
+
+    // Acceder a las categorías
+    datosJson.categorias.forEach(categoria => {
+        if (categoria.nombre === categoriaSeleccUsuario) {
+            // Acceder a los tipos dentro de la categoría de películas
+            categoria.tipos.forEach(tipo => {
+                if (tipo.nombre === 'Comedia') {
+                    // Acceder a las opciones dentro de la categoría de comedia
+                    tipo.opciones.forEach(opcion => {
+                        let contenedorOpcion = document.createElement('div');
+                        contenedorOpcion.className = 'contenedor-opcion';
+
+                        let imagenElemet = document.createElement('img');
+                        imagenElemet.src = opcion.imagenes;
+                        imagenElemet.className = 'ClaseImagenes';
+
+                        let textoElemet = document.createElement('p');
+                        textoElemet.className = 'parrafoLista';
+                        textoElemet.textContent = `Tipo: ${tipo.nombre},
+                                                  Título: ${opcion.titulo},\n
+                                                  Sinopsis: ${opcion.sinopsis}`;
+
+                        contenedorOpcion.appendChild(imagenElemet);
+                        contenedorOpcion.appendChild(textoElemet);
+
+                        div1.appendChild(contenedorOpcion);
+
+                        contenedorOpcion.addEventListener('mouseover', function () {
+                            textoElemet.style.display = 'block';
+
+                        });
+
+                        contenedorOpcion.addEventListener('mouseout', function () {
+                            textoElemet.style.display = 'none';
+                        });
+                    });
+                }
+            });
         }
     });
- }
+}
 
- function btnCrimen(){
-    let btn = buscarPorId('botonCrimen');
-    let edad = buscarPorId ('cajaEdad');
-    
-    btn.addEventListener('click', function(){
-        let valorEdad = edad.value;
-        if(valorEdad >= 16){
-            let imgPelicula1 = document.getElementById('miImagen5')
-            imgPelicula1.classList.add('ImgPeliculaTheGodfather')
-            imgPelicula1.style.display = 'inline-block';
 
-            let imgPelicula = document.getElementById('miImagen4')
-            imgPelicula.classList.add('ImgPeliculaElSecretoDeSusOjos')
-            imgPelicula.style.display = 'inline-block';
 
-        } else {
-            let ImgDesaparece = buscarPorId('miImagen5');
-            ImgDesaparece.style.display = 'none';
+function btnTerror(categoriaSeleccUsuario){
+    let elemetodiv1 = buscarPorId('div1');
+    elemetodiv1.innerHTML = categoriaSeleccUsuario +":\n";
 
-            if(valorEdad >= 13){
-                let imgPelicula2 = document.getElementById('miImagen4')
-                imgPelicula2.classList.add('ImgPeliculaElSecretoDeSusOjos')
-                imgPelicula2.style.display = 'inline-block';
-
-            } else {
-                let ImgDesaparece = buscarPorId('miImagen2');
-                ImgDesaparece.style.display = 'none'
-
-                let mensajeFinal = buscarPorId('mensajeFinal');
-                mensajeFinal.textContent = 'No hay peliculas disponibles para tu edad';
-                setTimeout(function(){
-                    let mensajeFinal = buscarPorId('mensajeFinal');
-                    mensajeFinal.style.display ='none';
-                }, 5000)
-                
-            }
-           
+    // Acceder a las categorías
+    datosJson.categorias.forEach(categoria => {
+        if (categoria.nombre === categoriaSeleccUsuario) { // Filtrar solo las películas
+            // Acceder a los tipos dentro de la categoría de películas
+            categoria.tipos.forEach(tipo => {
+                if (tipo.nombre === 'Terror') { // Filtrar solo las películas de comedia
+                    // Acceder a las opciones dentro de la categoría de comedia
+                    tipo.opciones.forEach(opcion => {
+                        console.log(`Título: ${opcion.titulo}`);
+                        console.log(`Sinopsis: ${opcion.sinopsis}`);
+                        let listItem = document.createElement('li');
+                        listItem.textContent = `Tipo: ${tipo.nombre},
+                                               Título: ${opcion.titulo}
+                                               Sinopsis: ${opcion.sinopsis}
+                                               Imagen: ${opcion.imagenes}`;
+                        elemetodiv1.appendChild(listItem);
+                    });
+                }
+            });
         }
-    })
-    
-    
- }
+    });
+}
 
- function btnDrama(){
-    let btn = buscarPorId('botoDrama');
-    let edad = buscarPorId ('cajaEdad');
-    
-    btn.addEventListener('click', function(){
-        let valorEdad = edad.value;
-        if(valorEdad >= 16){
-            let imgPelicula1 = document.getElementById('miImagen8')
-            imgPelicula1.classList.add('ImgPeliculaTaxiDriver')
-            imgPelicula1.style.display = 'inline-block';
+function btnDrama(categoriaSeleccUsuario){
+    let elemetodiv1 = buscarPorId('div1');
+    elemetodiv1.innerHTML = categoriaSeleccUsuario +":\n";
 
-            let imgPelicula2 = document.getElementById('miImagen7')
-            imgPelicula2.classList.add('ImgPeliculaTheShawshankRedemption')
-            imgPelicula2.style.display = 'inline-block';
-
-            let imgPelicula = document.getElementById('miImagen6')
-            imgPelicula.classList.add('ImgPeliculaCasBlancaATP')
-            imgPelicula.style.display = 'inline-block';
-
-        } else {
-            let ImgDesaparece = buscarPorId('miImagen8');
-            ImgDesaparece.style.display = 'none';
-
-            if(valorEdad >= 13){
-                let imgPelicula2 = document.getElementById('miImagen7')
-                imgPelicula2.classList.add('ImgPeliculaTheShawshankRedemption')
-                imgPelicula2.style.display = 'inline-block';
-
-                let imgPelicula = document.getElementById('miImagen6')
-                imgPelicula.classList.add('ImgPeliculaCasBlancaATP')
-                imgPelicula.style.display = 'inline-block';
-
-            } else {
-                let ImgDesaparece = buscarPorId('miImagen7');
-                ImgDesaparece.style.display = 'none'
-
-                if(valorEdad >=7 ){
-                    let imgPelicula = document.getElementById('miImagen6')
-                    imgPelicula.classList.add('ImgPeliculaVolverAlFuturo')
-                    imgPelicula.style.display = 'inline-block';
-            } else{
-                    let ImgDesaparecee = buscarPorId('miImagen6');
-                    ImgDesaparecee.style.display = 'none'
-
-                    let mensajeFinal = buscarPorId('mensajeFinal');
-                    mensajeFinal.textContent = 'No hay peliculas disponibles para tu edad';
-                    setTimeout(function(){
-                        let mensajeFinal = buscarPorId('mensajeFinal');
-                        mensajeFinal.style.display ='none';
-                    }, 5000)
-                }   
-            } 
+    // Acceder a las categorías
+    datosJson.categorias.forEach(categoria => {
+        if (categoria.nombre === categoriaSeleccUsuario) { // Filtrar solo las películas
+            // Acceder a los tipos dentro de la categoría de películas
+            categoria.tipos.forEach(tipo => {
+                if (tipo.nombre === 'Drama') { // Filtrar solo las películas de comedia
+                    // Acceder a las opciones dentro de la categoría de comedia
+                    tipo.opciones.forEach(opcion => {
+                        console.log(`Título: ${opcion.titulo}`);
+                        console.log(`Sinopsis: ${opcion.sinopsis}`);
+                        let listItem = document.createElement('li');
+                        listItem.textContent = `Tipo: ${tipo.nombre},
+                                               Título: ${opcion.titulo}
+                                               Sinopsis: ${opcion.sinopsis}
+                                               Imagen: ${opcion.imagenes}`;
+                        elemetodiv1.appendChild(listItem);
+                    });
+                }
+            });
         }
-    })
-    
-    
- }
+    });
+}
 
+function btnCrecimientoPersonal(categoriaSeleccUsuario){
+    let elemetodiv1 = buscarPorId('div1');
+    elemetodiv1.innerHTML = categoriaSeleccUsuario +":\n";
 
- function btnMusical(){
-    let btn = buscarPorId('botonMusical');
-    let edad = buscarPorId ('cajaEdad');
-    
-    btn.addEventListener('click', function(){
-        let valorEdad = edad.value;
-        if(valorEdad >= 16){
-            let imgPelicula1 = document.getElementById('miImagen11')
-            imgPelicula1.classList.add('ImgPeliculaTheRockyHorrorPictureShow')
-            imgPelicula1.style.display = 'inline-block';
-
-            let imgPelicula2 = document.getElementById('miImagen10')
-            imgPelicula2.classList.add('ImgPeliculaLesMiserables')
-            imgPelicula2.style.display = 'inline-block';
-
-            let imgPelicula = document.getElementById('miImagen9')
-            imgPelicula.classList.add('ImgPeliculaLaLaLand')
-            imgPelicula.style.display = 'inline-block';
-
-        } else {
-            let ImgDesaparece = buscarPorId('miImagen11');
-            ImgDesaparece.style.display = 'none';
-
-            if(valorEdad >= 13){
-                let imgPelicula2 = document.getElementById('miImagen10')
-                imgPelicula2.classList.add('ImgPeliculaLesMiserables')
-                imgPelicula2.style.display = 'inline-block';
-
-                let imgPelicula = document.getElementById('miImagen9')
-                imgPelicula.classList.add('ImgPeliculaLaLaLand')
-                imgPelicula.style.display = 'inline-block';
-
-            } else {
-                let ImgDesaparece = buscarPorId('miImagen10');
-                ImgDesaparece.style.display = 'none'
-
-                if(valorEdad >=7 ){
-                    let imgPelicula = document.getElementById('miImagen9')
-                    imgPelicula.classList.add('ImgPeliculaLaLaLand')
-                    imgPelicula.style.display = 'inline-block';
-            } else{
-                    let ImgDesaparecee = buscarPorId('miImagen9');
-                    ImgDesaparecee.style.display = 'none'
-
-                    let mensajeFinal = buscarPorId('mensajeFinal');
-                    mensajeFinal.textContent = 'No hay peliculas disponibles para tu edad';
-                    setTimeout(function(){
-                        let mensajeFinal = buscarPorId('mensajeFinal');
-                        mensajeFinal.style.display ='none';
-                    }, 5000)
-                }   
-            } 
+    // Acceder a las categorías
+    datosJson.categorias.forEach(categoria => {
+        if (categoria.nombre === categoriaSeleccUsuario) { // Filtrar solo las películas
+            // Acceder a los tipos dentro de la categoría de películas
+            categoria.tipos.forEach(tipo => {
+                if (tipo.nombre === 'Crecimiento personal') { // Filtrar solo las películas de comedia
+                    // Acceder a las opciones dentro de la categoría de comedia
+                    tipo.opciones.forEach(opcion => {
+                        console.log(`Título: ${opcion.titulo}`);
+                        console.log(`Sinopsis: ${opcion.sinopsis}`);
+                        let listItem = document.createElement('li');
+                        listItem.textContent = `Tipo: ${tipo.nombre},
+                                               Título: ${opcion.titulo}
+                                               Sinopsis: ${opcion.sinopsis}
+                                               Imagen: ${opcion.imagenes}`;
+                        elemetodiv1.appendChild(listItem);
+                    });
+                }
+            });
         }
-    })
-    
-    
- }
-
-
-
-
- btnMusical();
- btnDrama();
- btnComedia();
- btnCrimen();
- configuracionEscuchador('cajaEdad', 'tituloSelectorEdad');
- configuracionEscuchador('cajaEdad', 'tituloSelectorEdad');
- configuracionEscuchador('cajaEdad', 'botonCrimen');
- configuracionEscuchador('cajaEdad', 'botonComedia');
+    });
+}
 

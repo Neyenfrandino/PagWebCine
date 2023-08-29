@@ -31,8 +31,6 @@ h1{
 
 .botonesCategoria{
     text-align: center;
-    margin: 30px;
-    
 }
 
 .botonComedia{
@@ -101,34 +99,6 @@ h1{
     color: white
 }
 
-.agruparPosters{
-    display: inline-block;
-}
-
-.ImgPeliculaVolverAlFuturo{
-   display: none;
-   border: none;
-   border-radius: 30px;
-    
-}
-
-.ImgPeliculaTheTrumanShow{
-    display: none;
-    border: none;
-    border-radius: 30px;
-    height: 402px;
-    width: 279px;
-
-}
-
-.ImgPeliculaTheWolfofWallStreet{
-    display: none;
-    border: none;
-    border-radius: 30px;
-    height: 402px;
-    width: 279px;
-}
-
 .mensajeFinal{
     text-align: center;
     font-family: cursive;
@@ -136,67 +106,76 @@ h1{
     text-shadow: 3px 3px 5px black;
 }
 
-.ImgPeliculaElSecretoDeSusOjos{
-    display: none;
+.selectSeriePeliculas{
+    border: solid 2px black;
+    border-radius: 20px;
+    font-weight: bold;
+    opacity: 0.7;
+    padding: 10px;
+    width: 120px;
+    cursor: pointer;
+    background-color: yellowgreen;
+}
+.ClaseImagenes {
     border: none;
     border-radius: 30px;
-    height: 402px;
-    width: 279px; 
+    width: 200px;
+    height: auto;
+    transition: transform 0.3s, border-radius 0.3s; /* Agrega transición al border-radius */
+    margin: 10px;
 }
 
-.ImgPeliculaTheGodfather{
-    display: none;
-    border: none;
-    border-radius: 30px;
-    height: 402px;
-    width: 279px; 
+.ClaseImagenes:hover {
+    transform: scale(1.2);
+    border-radius: 0px; /* Cambia el border-radius al hacer hover */
 }
 
-.ImgPeliculaTaxiDriver{
-    display: none;
-    border: none;
-    border-radius: 30px;
-    height: 402px;
-    width: 279px; 
+.contenedor-opcion {
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    margin: 10px;
+    overflow: hidden; /* Agrega overflow para ocultar el párrafo */
 }
 
-.ImgPeliculaTheShawshankRedemption{
+.parrafoLista {
+    /* Estilos para el contenedor del párrafo */
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    z-index: 1;
+    padding: 10px; /* Agregar espacio alrededor del texto */
+    opacity: 0.9; /* Ajustar la opacidad para mejorar la legibilidad */
     display: none;
-    border: none;
-    border-radius: 30px;
-    height: 402px;
-    width: 279px; 
+    border-radius: 30px; /* Mantén el borde redondeado del párrafo */
+    transition: opacity 0.3s, font-size 0.3s; /* Agrega transición a la opacidad y el tamaño del texto */
+    font-size: 14px; /* Tamaño de fuente inicial */
 }
 
-.ImgPeliculaCasBlancaATP{
-    display: none;
-    border: none;
-    border-radius: 30px;
-    height: 402px;
-    width: 279px; 
+.parrafoLista:hover{
+    transform: scale();
+    border-radius: 0px;
 }
 
-.ImgPeliculaLaLaLand{
-    display: none;
+.ClaseImagenes {
+    /* Estilos para la imagen */
     border: none;
     border-radius: 30px;
-    height: 402px;
-    width: 279px; 
+    width: 200px;
+    height: auto;
+    transition: transform 0.3s;
+    margin: 10px;
 }
 
-.ImgPeliculaLesMiserables{
-    display: none;
-    border: none;
-    border-radius: 30px;
-    height: 402px;
-    width: 279px;
+.ClaseImagenes:hover {
+    transform: scale(1.2);
 }
 
-.ImgPeliculaTheRockyHorrorPictureShow{
-    display: none;
-    border: none;
-    border-radius: 30px;
-    height: 402px;
-    width: 279px;
-}
+
 
