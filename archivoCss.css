@@ -141,21 +141,46 @@ h1{
 .parrafoLista {
     /* Estilos para el contenedor del párrafo */
     position: absolute;
-    bottom: 0;
+    bottom: 15px;
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    width: 100%;
+    width: 90%;
     box-sizing: border-box;
     margin: 0;
     z-index: 1;
     padding: 10px; /* Agregar espacio alrededor del texto */
     opacity: 0.9; /* Ajustar la opacidad para mejorar la legibilidad */
-    display: none;
-    border-radius: 30px; /* Mantén el borde redondeado del párrafo */
+    /* display: none; */
+    border-radius: 20px; /* Mantén el borde redondeado del párrafo */
     transition: opacity 0.3s, font-size 0.3s; /* Agrega transición a la opacidad y el tamaño del texto */
     font-size: 14px; /* Tamaño de fuente inicial */
+    cursor: pointer;
+}
+
+.div1{
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    margin: 10px;
+    overflow: hidden;
+    width: 400px;
+    height: 400px;
+    background-color: rgba(27, 24, 24, 0.7);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.parrafoLista.agregado{
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    
 }
 
 .parrafoLista:hover{
@@ -175,6 +200,10 @@ h1{
 
 .ClaseImagenes:hover {
     transform: scale(1.2);
+}
+
+.h3TituloUsuario{
+    text-align: center;
 }
 
 
