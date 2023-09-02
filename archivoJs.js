@@ -16,20 +16,41 @@ function buscarPorId(elementoID){
     return objetoId;
 }
 
-// Obtén una referencia al botón de búsqueda y agrega un oyente de eventos
 let boton = buscarPorId('miBotonDeBusqueda');
-boton.addEventListener('click', buscar);
+boton.addEventListener('click', function(){
+    let campoInput = buscarPorId('cajaEdad');
 
-// Obtén una referencia al campo de entrada y a la lista donde se mostrarán los resultados
-let campoInput = buscarPorId('cajaEdad');
-let lista = buscarPorId('miLista');
+                if (campoInput.value == '') {
+                    let elementoParrafoValidacionInput = document.createElement('p');
+                    elementoParrafoValidacionInput.id = 'validacionInputCampoNull';
+                    
+                    elementoParrafoValidacionInput.textContent = 'Si desea filtrar, Solo tiene que ingresar en el campo el Titulo de la pelicula...';
+                    elementoParrafoValidacionInput.style.textAlign = 'center';
+                    elementoParrafoValidacionInput.style.fontFamily = 'cursive';
+                    elementoParrafoValidacionInput.style
 
-// Función para realizar la búsqueda y mostrar los resultados en la lista
+                    let contenedorMensajeUsuarioValidacionInput = buscarPorId('mensajeFinal');
+                    console.log(contenedorMensajeUsuarioValidacionInput)
+                    contenedorMensajeUsuarioValidacionInput.appendChild(elementoParrafoValidacionInput);
+                    campoInput.focus()
+                    elementoParrafoValidacionInput.focus()
+                    campoInput.style.borderColor = 'red'
+                    campoInput.style.backgroundColor = 'rgba(255, 0, 0, 0.8)'
+
+                    setTimeout(() => {
+                        elementoParrafoValidacionInput.textContent = null;
+                        campoInput.style.backgroundColor = null
+                        campoInput.style.borderColor = null
+                    }, 5000);
+                } 
+                    buscar()
+});
+
 function buscar() {
-    // Limpia la lista antes de agregar nuevos elementos
+    let lista = buscarPorId('miLista'); 
+    let campoInput = buscarPorId('cajaEdad');
     lista.innerHTML = '';
 
-    // Realiza la solicitud fetch al archivo JSON
     fetch('json.json')
     .then(respuesta => respuesta.json())
     .then(function(salida) {
@@ -37,31 +58,38 @@ function buscar() {
       for (let categoria of salida.categorias) {
         for (let tipo of categoria.tipos) {
           for (let opcion of tipo.opciones) {
+                // Aqui pasamos a mayuscula el valor del input y lo asociamos con opciones de pelicula
             if (opcion.titulo.toUpperCase().startsWith(valorInput)) {
-              // Crea un elemento <p> para mostrar la sinopsis
-              let p = document.createElement('p');
-              p.innerHTML = opcion.sinopsis;
-              p.style.display ='block';
-              
-              // Crea un elemento <li> para mostrar el nombre
-              let li = document.createElement('li');
-              li.innerHTML = opcion.titulo;
-              li.addEventListener('mousemove', function(){
-              p.style.display = 'block';
-              });
-              li.addEventListener('mouseout', function(){
-                  p.style.display = 'none';
-              }); 
-
-              // Agrega el elemento <p> al <li> y el <li> a la lista
-              li.appendChild(p);
-              lista.appendChild(li);
-            }
-          }
-        }
-      }
+                 // validamos que el campo no sea null
+              if(valorInput != ''){
+                // Crea un elemento <p> para mostrar la sinopsis
+                let p = document.createElement('p');
+                p.innerHTML = opcion.sinopsis;
+                p.style.display ='block';
+                
+                // Crea un elemento <li> para mostrar el nombre
+                let li = document.createElement('li');
+                li.innerHTML = opcion.titulo;
+                li.addEventListener('mousemove', function(){
+                p.style.display = 'block';
+                });
+                li.addEventListener('mouseout', function(){
+                    p.style.display = 'none';
+                }); 
+  
+                // Agrega el elemento <p> al <li> y el <li> a la lista
+                li.appendChild(p);
+                lista.appendChild(li);
+              }  else {
+                // Verifica si el mensaje de validación ya existe en el DOM
+                
+              }
+            };
+          };
+        };
+      };
     });
-}
+};
 
 function eventoPersonalizadoParrafo(parrafo) {
     let originalContent = parrafo.innerHTML;
@@ -91,16 +119,17 @@ function cambioSelect(){
     let botonTerror = buscarPorId('botonTerror');
     let botonDrama = buscarPorId('botoDrama');
     let botonCrecimientoPersonal = buscarPorId('botonCrecimientoPersonal');
-    
-    
+    let selectUsiario = buscarPorId('select');
+    let h3TituloUsuario = document.createElement('h3');
+
     nombreSelect.addEventListener('change', function(){
-        
-        let selectUsiario = buscarPorId('select');
-        let h3TituloUsuario = document.createElement('h3');
-        h3TituloUsuario.className = 'h3TituloUsuario'
-        h3TituloUsuario.textContent = nombreSelect.value;
-
-
+        if(selectUsiario){
+            h3TituloUsuario.className = 'h3TituloUsuario'
+            h3TituloUsuario.textContent = nombreSelect.value;
+      
+        } else if (selectUsiario){
+            h3TituloUsuario.textContent = '';
+        }
         selectUsiario.appendChild(h3TituloUsuario);
 
         let categoriaSeleccionada = datosJson.categorias.find(categoria => categoria.nombre === nombreSelect.value);
